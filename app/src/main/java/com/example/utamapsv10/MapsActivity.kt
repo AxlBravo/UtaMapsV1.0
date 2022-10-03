@@ -49,10 +49,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
     //Funcion para crear marcadores
     private fun createMarker(){
-        /*
-        potoooooooooo
-        potoooo
-         */
         val universidadTarapaca = LatLng(-18.487886, -70.294793)
         val marker = MarkerOptions().position(universidadTarapaca).title("Esta es la entrada principal de la UTA")
         mMap.addMarker(marker)
