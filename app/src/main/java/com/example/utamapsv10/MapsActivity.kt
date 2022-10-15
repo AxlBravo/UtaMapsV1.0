@@ -18,14 +18,23 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.utamapsv10.databinding.ActivityMapsBinding
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener{
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
 
+    //Inicio paso 1 de actualizacion de la ubicacion
+    private  lateinit  var locationCallback: LocationCallback
+    private lateinit var locationRequest: LocationRequest
+    private var locationUpdateState = false
+
     companion object{
         const val REQUEST_CODE_LOCATION = 0
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val REQUEST_CHECK_SETTINGS = 2
     }
+    //Fin paso 1 de actualizacion de la ubicacion
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +57,88 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         enableLocation()
     }
 
+    //Inicio paso 4 de actualizacion de la ubiacion
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+            if (resultCode == Activity.RESULT_OK) {
+                locationUpdateState = true
+                startLocationUpdates()
+            }
+        }
+    }
+
+    // 2
+    override fun onPause() {
+        super.onPause()
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+    // 3
+    public override fun onResume() {
+        super.onResume()
+        if (!locationUpdateState) {
+            startLocationUpdates()
+        }
+    }
+    //Fin paso 4 de actualizacion de la ubicacion
+
+    //Inicio paso 2 de actualizacion de la ubicacion
+    private fun startLocationUpdates() {
+        //1
+        if (ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE)
+            return
+        }
+        //2
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null /* Looper */)
+    }
+    //Fin paso 2 de actualizacion de la ubicacion
+
+    //Inicio paso 3 de actualizacion de la ubicacion
+    private fun createLocationRequest() {
+        // 1
+        locationRequest = LocationRequest()
+        // 2
+        locationRequest.interval = 10000
+        // 3
+        locationRequest.fastestInterval = 5000
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+
+        val builder = LocationSettingsRequest.Builder()
+            .addLocationRequest(locationRequest)
+
+        // 4
+        val client = LocationServices.getSettingsClient(this)
+        val task = client.checkLocationSettings(builder.build())
+
+        // 5
+        task.addOnSuccessListener {
+            locationUpdateState = true
+            startLocationUpdates()
+        }
+        task.addOnFailureListener { e ->
+            // 6
+            if (e is ResolvableApiException) {
+                // Location settings are not satisfied, but this can be fixed
+                // by showing the user a dialog.
+                try {
+                    // Show the dialog by calling startResolutionForResult(),
+                    // and check the result in onActivityResult().
+                    e.startResolutionForResult(this@MapsActivity,
+                        REQUEST_CHECK_SETTINGS)
+                } catch (sendEx: IntentSender.SendIntentException) {
+                    // Ignore the error.
+                }
+            }
+        }
+    }
+    //Fin paso 3 de actualizacion de la ubicacion
+
     //Funcion para crear marcadores
-    /*
-    poto del seba
-     */
     private fun createMarker(){
         val universidadTarapaca = LatLng(-18.487886, -70.294793)
         val marker = MarkerOptions().position(universidadTarapaca).title("Esta es la entrada principal de la UTA")
@@ -114,6 +201,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         Toast.makeText(this, "Boton pulsado", Toast.LENGTH_SHORT).show()
         return false
     }
+
+
+    //Inicio paso 5 actualizacion de ubicacion
+    locationCallback = object : LocationCallback() {
+        override fun onLocationResult(p0: LocationResult) {
+            super.onLocationResult(p0)
+
+            lastLocation = p0.lastLocation
+            placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
+        }
+    }
+    //Fin paso 5 actualizacion de ubicacion
+
+    //Inicio paso 6 actualizacion de ubicacion
+    createLocationRequest()
+    //Fin paso 6 actualizacion de ubicacion
+
 
     override fun onMyLocationClick(p0: Location) {
         Toast.makeText(this, "Estas en ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
