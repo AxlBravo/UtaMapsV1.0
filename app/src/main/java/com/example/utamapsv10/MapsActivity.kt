@@ -45,6 +45,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         mMap = googleMap
         createMarker()
         createPolyLines()
+
         //Tipo de mapa
         mMap.mapType = MAP_TYPE_HYBRID
 
@@ -109,7 +110,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
             .add(LatLng(-18.489412985266362,-70.29644966125488))
             .color(ContextCompat.getColor(this, R.color.ruta))
 
-
             val polyline = mMap.addPolyline(polylineOptions)
     }
 
@@ -120,14 +120,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         mMap.addMarker(marker)
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(universidadTarapaca, 18F), 3000, null)
 
-        /*
+
         //Escuela de medicina
         val escuelaDeMedicina = LatLng(-18.491900566715533, -70.29768141985623)
-        //val markerA = MarkerOptions().position(escuelaDeMedicina).title("Escuela de Medicina")
-        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
-            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(escuelaDeMedicina))
+        val markerA = MarkerOptions().position(escuelaDeMedicina).title("Escuela de Medicina")
+        mMap.addMarker(markerA)
+        //mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(escuelaDeMedicina))
 
 
+        /*
         //Aulario C
         val aularioC = LatLng(-18.49119864947299, -70.29738137069214)
         //val markerB = MarkerOptions().position(aularioC).title("Aulario C")
