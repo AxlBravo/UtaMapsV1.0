@@ -17,6 +17,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.utamapsv10.databinding.ActivityMapsBinding
+import com.google.android.gms.maps.GoogleMap.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
@@ -42,6 +43,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         createMarker()
+
+        //Tipo de mapa
+        mMap.mapType = MAP_TYPE_HYBRID
+
         mMap.setOnMyLocationButtonClickListener(this)
         mMap.setOnMyLocationClickListener(this)
         enableLocation()
