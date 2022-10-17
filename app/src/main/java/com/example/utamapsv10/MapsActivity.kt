@@ -47,7 +47,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         mMap.setOnMyLocationClickListener(this)
         enableLocation()
     }
-
     //Funcion para crear marcadores
     /*
     poto del seba
@@ -57,12 +56,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         val marker = MarkerOptions().position(universidadTarapaca).title("Esta es la entrada principal de la UTA")
         mMap.addMarker(marker)
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(universidadTarapaca, 18F), 3000, null)
+
     }
 
     //Funcion para saber si el permiso esta aceptado
     private fun isLocationPermissionGranted() = ContextCompat.checkSelfPermission(
         this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-
+    //potoooooo
     //Funcion para comprobar si otorgo el permiso, entregar la ubicacion y si no pedirle al usuario que la acepte
     private fun enableLocation(){
         if (!::mMap.isInitialized) return
@@ -118,4 +118,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     override fun onMyLocationClick(p0: Location) {
         Toast.makeText(this, "Estas en ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
     }
+
+
+
+
+
 }
