@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.utamapsv10.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.GoogleMap.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.PolylineOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
@@ -118,6 +119,84 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         val marker = MarkerOptions().position(universidadTarapaca).title("Esta es la entrada principal de la UTA")
         mMap.addMarker(marker)
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(universidadTarapaca, 18F), 3000, null)
+
+        //Escuela de medicina
+        val escuelaDeMedicina = LatLng(-18.491900566715533, -70.29768141985623)
+        //val markerA = MarkerOptions().position(escuelaDeMedicina).title("Escuela de Medicina")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(escuelaDeMedicina))
+
+        //Aulario C
+        val aularioC = LatLng(-18.49119864947299, -70.29738137069214)
+        //val markerB = MarkerOptions().position(aularioC).title("Aulario C")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_aulario)).anchor(0.0f, 1.0f).position(aularioC))
+
+        //Departamento de matematicas
+        val deptoMatematicas = LatLng(-18.491765900973082, -70.29676982703793)
+        //val markerC = MarkerOptions().position(deptoMatematicas).title("Departamento de matematicas")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_aulario)).anchor(0.0f, 1.0f).position(deptoMatematicas))
+
+        //Departamento de física
+        val deptoFisica = LatLng(-18.491481003591634, -70.29704073014616)
+        //val markerD = MarkerOptions().position(deptoFisica).title("Departamento de física")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_aulario)).anchor(0.0f, 1.0f).position(deptoFisica))
+
+        //Facultad de salud
+        val facDeSalud = LatLng(-18.492412005785166, -70.29679396691877)
+        //val markerE = MarkerOptions().position(facDeSalud).title("Facultad de salud")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(facDeSalud))
+
+        //Aulario A
+        val aularioA = LatLng(-18.490992606971037, -70.29669204297426)
+        //val markerF = MarkerOptions().position(aularioA).title("Aulario A")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_aulario)).anchor(0.0f, 1.0f).position(aularioA))
+
+        //Registraduria
+        val registraduria = LatLng(-18.490354171365787, -70.29657426208078)
+        //val markerG = MarkerOptions().position(registraduria).title("Registraduria")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_lugar)).anchor(0.0f, 1.0f).position(registraduria))
+
+        //Biblioteca Central
+        val  bibliotecaCentral= LatLng(-18.490326190161305, -70.29592248528115)
+        //val markerH = MarkerOptions().position(bibliotecaCentral).title("Biblioteca Central")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_lugar)).anchor(0.0f, 1.0f).position(bibliotecaCentral))
+
+        //Facultad de Ciencias Sociales y Jurídicas
+        val facSociales = LatLng(-18.488426001426102, -70.29702487318757)
+        //val markerI = MarkerOptions().position(facSociales).title("Facultad de Ciencias Sociales y Jurídicas")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_aulario)).anchor(0.0f, 1.0f).position(facSociales))
+
+        //Aulario D
+        val aularioD = LatLng(-18.488554848758422, -70.2967299870205)
+        //val markerJ = MarkerOptions().position(aularioD).title("Aulario D")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_aulario)).anchor(0.0f, 1.0f).position(aularioD))
+
+        //Departamento de Informática
+        val deptoInformatica= LatLng(-18.48916789676081, -70.29522526775676)
+        //val markerK = MarkerOptions().position(deptoInformatica).title("Departamento de Informática")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(deptoInformatica))
+
+        //Departamento de Mecánica
+        val deptoMecanica = LatLng(-18.488244508272366, -70.2953137806502)
+        //val markerL = MarkerOptions().position(deptoMecanica).title("Departamento de Mecánica")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(deptoMecanica))
+
+        //Facultad de Educación y Humanidades
+        val facEducacion= LatLng(-18.487885835362857, -70.29483098302845)
+        //val markerM = MarkerOptions().position(facEducacion).title("Facultad de Educación y Humanidades")
+        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
+            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(facEducacion))
 
     }
 
