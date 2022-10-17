@@ -51,7 +51,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         createMarker()
-        mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
         mMap.setOnMyLocationButtonClickListener(this)
         mMap.setOnMyLocationClickListener(this)
         enableLocation()
