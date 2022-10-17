@@ -1,3 +1,4 @@
+/*
 package com.example.utamapsv10
 
 import android.Manifest
@@ -124,3 +125,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
 
 }
+
+ */
