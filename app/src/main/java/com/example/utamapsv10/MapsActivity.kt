@@ -43,7 +43,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        //createMarker()
+        createMarker()
         createPolyLines()
         //Tipo de mapa
         mMap.mapType = MAP_TYPE_HYBRID
@@ -120,11 +120,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         mMap.addMarker(marker)
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(universidadTarapaca, 18F), 3000, null)
 
+        /*
         //Escuela de medicina
         val escuelaDeMedicina = LatLng(-18.491900566715533, -70.29768141985623)
         //val markerA = MarkerOptions().position(escuelaDeMedicina).title("Escuela de Medicina")
         mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
             (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(escuelaDeMedicina))
+
 
         //Aulario C
         val aularioC = LatLng(-18.49119864947299, -70.29738137069214)
@@ -196,7 +198,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         val facEducacion= LatLng(-18.487885835362857, -70.29483098302845)
         //val markerM = MarkerOptions().position(facEducacion).title("Facultad de Educación y Humanidades")
         mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
-            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(facEducacion))
+            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(facEducacion))*/
 
     }
 
