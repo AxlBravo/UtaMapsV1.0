@@ -1,4 +1,3 @@
-/*
 package com.example.utamapsv10
 
 import android.Manifest
@@ -48,9 +47,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         enableLocation()
     }
     //Funcion para crear marcadores
-    /*
-    poto del seba
-     */
     private fun createMarker(){
         val universidadTarapaca = LatLng(-18.487886, -70.294793)
         val marker = MarkerOptions().position(universidadTarapaca).title("Esta es la entrada principal de la UTA")
@@ -118,11 +114,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     override fun onMyLocationClick(p0: Location) {
         Toast.makeText(this, "Estas en ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
     }
-
-
-
-
-
 }
-
- */
