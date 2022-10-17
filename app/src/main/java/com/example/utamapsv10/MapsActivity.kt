@@ -120,14 +120,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         mMap.addMarker(marker)
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(universidadTarapaca, 18F), 3000, null)
 
-        /*
         //Escuela de medicina
         val escuelaDeMedicina = LatLng(-18.491900566715533, -70.29768141985623)
-        //val markerA = MarkerOptions().position(escuelaDeMedicina).title("Escuela de Medicina")
-        mMap.addMarker(MarkerOptions().icon(BitmapDescriptorFactory.fromResource
-            (R.mipmap.ic_marcador_depto)).anchor(0.0f, 1.0f).position(escuelaDeMedicina))
+        val markerA = mMap.addMarker(MarkerOptions().position(escuelaDeMedicina).title("Escuela de Medicina"))
 
-
+        /*
         //Aulario C
         val aularioC = LatLng(-18.49119864947299, -70.29738137069214)
         //val markerB = MarkerOptions().position(aularioC).title("Aulario C")
