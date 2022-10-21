@@ -1,13 +1,16 @@
 //Ultima Version
 
 package com.example.utamapsv10
-
+import androidx.annotation.NonNull
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,11 +25,13 @@ import com.example.utamapsv10.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.GoogleMap.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.PolylineOptions
+import java.lang.reflect.Method
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    private lateinit var toolbar: Toolbar/* aiuda*/
 
     companion object{
         const val REQUEST_CODE_LOCATION = 0
@@ -41,7 +46,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        return super.onCreateOptionsMenu(menu)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.getItemId()
+        if(id== R.id.opcion1){
+            Toast.makeText(this, "option 1", Toast.LENGTH_SHORT).show()
+        }else if(id == R.id.opcion2){
+            Toast.makeText(this, "option 2", Toast.LENGTH_SHORT).show()
+        }else if(id == R.id.opcion3){
+            Toast.makeText(this, "option 3", Toast.LENGTH_SHORT).show()
+        }else if(id == R.id.buscar){
+            Toast.makeText(this, "Oprimiste Buscar", Toast.LENGTH_SHORT).show()
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
